@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
         }
 
         playerController.passedLevel = false;
+        playerController.GetComponent<PlayerController>().enabled = false;
         
     }
 

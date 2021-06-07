@@ -27,7 +27,11 @@ public class TouchController : MonoBehaviour
             TapEndEvent(didTouch);
         }
     }
-    
+    /// <summary>
+    /// In the update function it controls touch movement of the user 
+    /// touch screen OnTap function will work and tap event function send a message to subscribers
+    /// If the user takes their finger off the screen tapend event function send a message to subscribers
+    /// </summary>
     void Update()
     {
         if (Input.touchCount > 0)

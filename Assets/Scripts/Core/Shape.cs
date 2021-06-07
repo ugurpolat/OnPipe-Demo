@@ -30,16 +30,22 @@ public class Shape : MonoBehaviour
         if (isTouchedPlayer && playerController.canCollect)
         {
             scoreManager.collectableShape++;
-            for (int i = 0; i < 17; i++)
-            {
-                if (corns[i].transform.localPosition.z <= 0.31)
-                {
-                    corns[i].AddForce(Vector3.up * Random.Range(1.5f,2f), ForceMode.Impulse);                 
-                    corns[i].useGravity = true;
-                    corns[i].AddForce(Vector3.back * Random.Range(0.5f,1f), ForceMode.Impulse);                 
-                }
-            }
+            CornSoloMovment();
             StartCoroutine(DestroyShape());      
+        }
+    }
+
+    //when ring hit corn round after corn solo movment
+    void CornSoloMovment()
+    {
+        for (int i = 0; i < 17; i++)
+        {
+            if (corns[i].transform.localPosition.z <= 0.31)
+            {
+                corns[i].AddForce(Vector3.up * Random.Range(1.5f, 2f), ForceMode.Impulse);
+                corns[i].useGravity = true;
+                corns[i].AddForce(Vector3.back * Random.Range(0.5f, 1f), ForceMode.Impulse);
+            }
         }
     }
 

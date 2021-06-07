@@ -15,9 +15,10 @@ public class PlayerController : MonoBehaviour
     Vector3 ringLocalScale = new Vector3(1f, 0.8f, 1f);
 
     float ringScaleFactor = 0.25f;
-    float overlapSphereRadius = 0.5f;
+    float overlapSphereRadius = 0.3f;
     float offSet = 0.8f;
 
+    // subscribe TouchControler events
     private void OnEnable()
     {
         TouchController.TapEvent += TapHandler;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    //if developer want to test game in pc he/she have to use comment line for mobile input field
     void ChangeRingSize()
     {
         //for mouse control
@@ -109,6 +111,7 @@ public class PlayerController : MonoBehaviour
         didTouch = false;
     }
 
+    //check user did touch end circle or airobstacle
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EndCircle"))

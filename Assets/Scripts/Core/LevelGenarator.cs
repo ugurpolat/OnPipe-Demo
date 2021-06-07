@@ -6,6 +6,7 @@ public class LevelGenarator : MonoBehaviour
 {
     public GameObject currentScorePanel;
     public GameObject winPanel;
+    PlayerController playerController;
     UIManager uıManager;
     [Range(1f, 2.0f)]
     public float minRadius;
@@ -38,6 +39,7 @@ public class LevelGenarator : MonoBehaviour
     private void Awake()
     {
         uıManager = GameObject.FindObjectOfType<UIManager>();
+        playerController = GameObject.FindObjectOfType<PlayerController>();
         PlayerPrefs.GetInt("Level", 1);
     }
 
@@ -120,6 +122,7 @@ public class LevelGenarator : MonoBehaviour
 
     public void CreateLevel()
     {
+        playerController.GetComponent<PlayerController>().enabled = true;
         BeforeCreatedMap();
         for (int i = 0; i < 10; i++)
         {
