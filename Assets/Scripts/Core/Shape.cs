@@ -31,7 +31,7 @@ public class Shape : MonoBehaviour
         {
             scoreManager.collectableShape++;
             CornSoloMovment();
-            StartCoroutine(DestroyShape());      
+            StartCoroutine(DestroyShape());
         }
     }
 

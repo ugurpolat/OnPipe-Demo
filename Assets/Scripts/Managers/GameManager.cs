@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level") + 1);
         currentScorePanel.SetActive(false);
         winPanel.SetActive(true);
-        
+
         DeleteCylinder();
 
         if (Camera.main != null)
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
 
         playerController.passedLevel = false;
         playerController.GetComponent<PlayerController>().enabled = false;
-        
+
     }
 
     /// <summary>
