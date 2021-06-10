@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         //checking for start panel 
-        if (!playerController.startPanel.activeSelf)
+        if (!PlayerController.Instance.startPanel.activeSelf)
         {
             transform.Translate(Vector3.forward * cameraSpeed * Time.deltaTime, Space.World);
         }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Shape : MonoBehaviour
 {
-    PlayerController playerController;
     ScoreManager scoreManager;
     public Rigidbody[] corns;
 
@@ -14,9 +13,7 @@ public class Shape : MonoBehaviour
     }
     void Start()
     {
-        playerController = GameObject.FindObjectOfType<PlayerController>();
         scoreManager = GameObject.FindObjectOfType<ScoreManager>();
-
     }
     private void FixedUpdate()
     {
@@ -27,7 +24,7 @@ public class Shape : MonoBehaviour
     {
         bool isTouchedPlayer = Physics.CheckSphere(transform.position, 0.07f, LayerMask.GetMask("Player"));
 
-        if (isTouchedPlayer && playerController.canCollect)
+        if (isTouchedPlayer && PlayerController.Instance.canCollect)
         {
             scoreManager.collectableShape++;
             CornSoloMovment();

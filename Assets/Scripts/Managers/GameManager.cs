@@ -13,12 +13,10 @@ public class GameManager : MonoBehaviour
     GameObject[] obstacleDelete;
     Vector3 startpos = new Vector3(0, -3.13f, 15.65f);
     ScoreManager scoreManager;
-    PlayerController playerController;
 
     private void Awake()
     {
         scoreManager = GameObject.FindObjectOfType<ScoreManager>();
-        playerController = GameObject.FindObjectOfType<PlayerController>().GetComponent<PlayerController>();
     }
 
     private void Start()
@@ -27,7 +25,7 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        if (!playerController.startPanel.activeSelf && !gameOverPanel.activeSelf && !winPanel.activeSelf)
+        if (!PlayerController.Instance.startPanel.activeSelf && !gameOverPanel.activeSelf && !winPanel.activeSelf)
         {
             CheckRingMovement();
         }
@@ -39,22 +37,22 @@ public class GameManager : MonoBehaviour
     private void CheckRingMovement()
     {
 
-        if (playerController.targetCylinder.gameObject.CompareTag("Obstacle"))
+        if (PlayerController.Instance.targetCylinder.gameObject.CompareTag("Obstacle"))
         {
-            if (playerController.targetCylinderRadius.x + offSet > playerController.transform.localScale.x)
+            if (PlayerController.Instance.targetCylinderRadius.x + offSet > PlayerController.Instance.transform.localScale.x)
             {
                 GameOver();
             }
         }
-        if (playerController.targetCylinderRadius.x > playerController.transform.localScale.x)
+        if (PlayerController.Instance.targetCylinderRadius.x > PlayerController.Instance.transform.localScale.x)
         {
             GameOver();
         }
-        if (playerController.isDead)
+        if (PlayerController.Instance.isDead)
         {
             GameOver();
         }
-        if (playerController.passedLevel)
+        if (PlayerController.Instance.passedLevel)
         {
             Win();
         }
@@ -79,8 +77,8 @@ public class GameManager : MonoBehaviour
 
     void DisablePlayer()
     {
-        playerController.enabled = false;
-        playerController.gameObject.SetActive(false);
+        PlayerController.Instance.enabled = false;
+        PlayerController.Instance.gameObject.SetActive(false);
     }
 
     void CheckPanels()
@@ -109,8 +107,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", scoreManager.collectableShape);
         }
 
-        playerController.passedLevel = false;
-        playerController.GetComponent<PlayerController>().enabled = false;
+        PlayerController.Instance.passedLevel = false;
+        PlayerController.Instance.GetComponent<PlayerController>().enabled = false;
 
     }
 

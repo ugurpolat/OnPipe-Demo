@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance = null;
+
     public bool isDead;
     public bool canCollect;
     public Vector3 targetCylinderRadius;
@@ -30,7 +32,18 @@ public class PlayerController : MonoBehaviour
         TouchController.TapEvent -= TapHandler;
         TouchController.TapEndEvent -= TapEndHandler;
     }
-
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Update()
     {
         if (!passedLevel)
@@ -59,13 +72,18 @@ public class PlayerController : MonoBehaviour
     {
         //for mouse control
 
-        /*if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
+            if (startPanel.activeSelf)
+            {
+                startPanel.SetActive(false);
+            }
             targetCylinderRadius = new Vector3(targetCylinder.localScale.x * ringScaleFactor, ringLocalScale.y, targetCylinder.localScale.z * ringScaleFactor);
             transform.localScale = Vector3.Slerp(transform.localScale, targetCylinderRadius, 0.125f);
         }
         else
         {
+            
             if (transform.localScale.x < ringLocalScale.x)
             {
                 transform.localScale = Vector3.Slerp(transform.localScale, ringLocalScale, 0.125f);
@@ -75,10 +93,10 @@ public class PlayerController : MonoBehaviour
                 transform.localScale = ringLocalScale;
             }
         }
-        */
+        
 
         //for mobile ınput
-        if (didTouch)
+        /*if (didTouch)
         {
             targetCylinderRadius = new Vector3(targetCylinder.localScale.x * ringScaleFactor, ringLocalScale.y, targetCylinder.localScale.z * ringScaleFactor);
             transform.localScale = Vector3.Slerp(transform.localScale, targetCylinderRadius, 0.85f);
@@ -94,7 +112,7 @@ public class PlayerController : MonoBehaviour
             {
                 transform.localScale = ringLocalScale;
             }
-        }
+        }*/
     }
 
     void TapHandler(bool touch)
